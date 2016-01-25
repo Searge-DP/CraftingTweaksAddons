@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class CraftingSiloProvider implements TweakProvider {
+public class ProviderCraftingSilo implements TweakProvider {
 
     private final DefaultProviderV2 defaultProvider = CraftingTweaksAPI.createDefaultProviderV2();
 
