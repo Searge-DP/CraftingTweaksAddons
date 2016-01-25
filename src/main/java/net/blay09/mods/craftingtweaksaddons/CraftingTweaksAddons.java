@@ -26,6 +26,7 @@ public class CraftingTweaksAddons {
     public static void ezstorage() {
         SimpleTweakProvider provider = registerSimpleProvider("ezstorage", "com.zerofall.ezstorage.container.ContainerStorageCoreCrafting");
         if(provider != null) {
+            provider.setGrid(90, 9);
             provider.setTweakRotate(true, true, 0, 0);
             provider.setTweakBalance(true, true, 0, 0);
             provider.setTweakClear(true, true, 0, 0);
@@ -44,7 +45,7 @@ public class CraftingTweaksAddons {
     }
 
     public static void progressiveautomation() {
-        SimpleTweakProvider provider = registerSimpleProvider("progressiveautomation", "com.zerofall.ezstorage.container.ContainerStorageCoreCrafting");
+        SimpleTweakProvider provider = registerSimpleProvider("progressiveautomation", "com.vanhal.progressiveautomation.gui.container.ContainerCrafter");
         if(provider != null) {
             provider.setPhantomItems(true);
             provider.setTweakRotate(true, true, 0, 0);
