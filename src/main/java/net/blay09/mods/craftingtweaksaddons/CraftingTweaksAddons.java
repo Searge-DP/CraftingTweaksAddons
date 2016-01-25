@@ -2,6 +2,7 @@ package net.blay09.mods.craftingtweaksaddons;
 
 import net.blay09.mods.craftingtweaks.api.CraftingTweaksAPI;
 import net.blay09.mods.craftingtweaks.api.SimpleTweakProvider;
+import net.blay09.mods.craftingtweaks.api.TweakProvider;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +21,8 @@ public class CraftingTweaksAddons {
         ezstorage();
         thaumcraft();
         progressiveautomation();
-        storagesilo();
+
+        registerProvider("uk.binarycraft.storagesilo.blocks.craftingsilo.ContainerCraftingSilo", new CraftingSiloProvider());
     }
 
     public static void ezstorage() {
@@ -55,25 +57,22 @@ public class CraftingTweaksAddons {
         }
     }
 
-    public static void storagesilo() {
-        SimpleTweakProvider provider = registerSimpleProvider("storagesilo", "uk.binarycraft.storagesilo.blocks.craftingsilo.ContainerCraftingSilo");
-        if(provider != null) {
-            provider.setTweakRotate(true, true, 0, 0);
-            provider.setTweakBalance(true, true, 0, 0);
-            provider.setTweakClear(true, true, 0, 0);
-            provider.setAlignToGrid(EnumFacing.WEST);
-        }
-    }
-
     @SuppressWarnings("unchecked")
     private static SimpleTweakProvider registerSimpleProvider(String modid, String className) {
         try {
             return CraftingTweaksAPI.registerSimpleProvider(modid, (Class<? extends Container>) Class.forName(className));
         } catch (ClassNotFoundException e) {
             logger.error("Could not register Crafting Tweaks addon for {} - internal names have changed.", modid);
-            e.printStackTrace();
         }
         return null;
     }
 
+    @SuppressWarnings("unchecked")
+    private static void registerProvider(String className, TweakProvider provider) {
+        try {
+            CraftingTweaksAPI.registerProvider((Class<? extends Container>) Class.forName(className), provider);
+        } catch (ClassNotFoundException e) {
+            logger.error("Could not register Crafting Tweaks addon for {} - internal names have changed.", provider.getModId());
+        }
+    }
 }

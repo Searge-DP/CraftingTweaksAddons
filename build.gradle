@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.blay09.mods:craftingtweaks:3.0.36:dev'
+    compile 'net.blay09.mods:craftingtweaks:3.0.37:dev'
 }
 
 jar {
